@@ -44,12 +44,13 @@ public class GameArea extends JPanel implements CellSize {
             currentPlant=null;
         }
         if(currentPlant!=null){
-            if(selectedPlant=="Shovel"){
+            if(selectedPlant.equals("Shovel")){
                 engine.getActivePlants().remove(this.currentPlant);
                 currentPlant=null;
+                topPanel.clearSelection();
                 repaint();
             }
-            if(selectedPlant=="PlantFood"){
+            if(selectedPlant.equals("PlantFood")){
                 currentPlant.performSpecial(engine);
                 topPanel.performedTotalTime++;
                 topPanel.plantFood.setText(3-topPanel.performedTotalTime+" PlantFood");
@@ -83,11 +84,6 @@ public class GameArea extends JPanel implements CellSize {
             case "CherryBomb":
                 cost=125;
                 newPlant=new CherryBomb(row,col);
-                break;
-            case "Shovel":
-                cost=0;
-                newPlant=null;
-                topPanel.clearSelection();
                 break;
         }
         if(newPlant!=null&&topPanel.spendSun(cost)){
