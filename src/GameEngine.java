@@ -114,7 +114,7 @@ public class GameEngine implements ActionListener,CellSize {
 
             for (Zombies zombie : activeZombies) {
                 
-                if (proj.row == zombie.row && proj.getXPosition()>=zombie.getXPosition()) {
+                if (proj.row == zombie.row && proj.getXPosition()>=zombie.getXPosition()&&proj.getXPosition()<=zombie.getXPosition()+CELLSIZE/2) {
                     proj.hitZombie(zombie);
                     activeProjectiles.remove(proj);
                     break;
@@ -125,7 +125,7 @@ public class GameEngine implements ActionListener,CellSize {
             boolean isFacingPlant=false;
             for(Plants plant: activePlants){
                 int PlantPixelX=plant.col*CELLSIZE;
-                if(zombie.getRow()==plant.row&&zombie.getXPosition()<=PlantPixelX+CELLSIZE&&zombie.getXPosition()>=PlantPixelX){
+                if(zombie.getRow()==plant.row&&zombie.getXPosition()<=PlantPixelX+CELLSIZE/2&&zombie.getXPosition()>=PlantPixelX){
                     zombie.attack(plant);
                     isFacingPlant=true;
                     break;
@@ -242,5 +242,6 @@ public class GameEngine implements ActionListener,CellSize {
             spawner.stop();
             spawner=null;
         }
+        spawnerThread=null;
     }
 }
