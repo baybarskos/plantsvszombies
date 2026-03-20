@@ -52,11 +52,12 @@ public class GameArea extends JPanel implements CellSize {
             if(selectedPlant=="PlantFood"){
                 currentPlant.performSpecial(engine);
                 topPanel.performedTotalTime++;
+                topPanel.plantFood.setText(3-topPanel.performedTotalTime+" PlantFood");
                 if(topPanel.performedTotalTime>=3) {
-                    topPanel.plantButtons.get(6).setEnabled(false);
+                    topPanel.plantFood.setEnabled(false);
                 }
-                repaint();
                 topPanel.clearSelection();
+                repaint();
             }
             return;
         }

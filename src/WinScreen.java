@@ -13,8 +13,8 @@ public class WinScreen extends JPanel {
         menuButton.setFont(new Font("Arial", Font.BOLD, 30));
 
         menuButton.addActionListener(e -> {
-            mainFrame.resetGame(); // Wipe the board clean
-            mainFrame.returnToMenu(); // Flip back to the Start Menu
+            mainFrame.resetGame();
+            mainFrame.returnToMenu();
         });
 
         JPanel buttonPanel = new JPanel();

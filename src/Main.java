@@ -18,7 +18,8 @@ public class Main extends JFrame {
         });
     }
     public Main(){
-        setTitle("Plants vs Zombies spinoff");
+        setIconImage(new ImageIcon(getClass().getResource("/resources/pvzlogo.png")).getImage());
+        setTitle("Plants vs Zombies");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);

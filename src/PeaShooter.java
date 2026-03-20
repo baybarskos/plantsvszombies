@@ -22,10 +22,9 @@ public class PeaShooter extends Plants{
         engine.addProjectile(newPea);
     }
     public void performSpecial(GameEngine engine){
-        int startX=this.col*CELLSIZE+32;
-        int[] rows={0,1,2,3,4};
-        for(int i: rows){
-            Pea newPea=new Pea(i,startX,20);
+        int startX=this.col*CELLSIZE;
+        for(int i=0;i<7;i++){
+            Pea newPea=new Pea(this.row,startX+i*30,20);
             engine.addProjectile(newPea);
         }
         this.plantImage=new ImageIcon(getClass().getResource("/resources/peashooterS.png")).getImage();

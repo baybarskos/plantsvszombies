@@ -31,19 +31,16 @@ public class ZombieSpawner implements Runnable{
                     spawnWaveZombie();
                     Thread.sleep(spawnDelay);
                 }
-
-                System.out.println("--- Wave " + CurrentWave + " Complete! ---");
                 CurrentWave++;
                 Thread.sleep(500 ); 
             }
 
             
             if (running) {
-                System.out.println("ALL WAVES SPAWNED!");
                 engine.setAllWavesSpawned(true);
             }
         } catch (Exception e) {
-            System.out.println("noooo"+e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
     private void spawnNormalZombie(){

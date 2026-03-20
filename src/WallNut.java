@@ -18,7 +18,7 @@ public class WallNut extends Plants{
 
     @Override
     public void performAction(GameEngine engine) {}
-    public void performSpecial(GameEngine engsunflowerine){
+    public void performSpecial(GameEngine engine){
         this.health*=2;
         performedSpecial=true;
         this.plantImage=new ImageIcon(getClass().getResource("/resources/wallnutS.png")).getImage();

@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class TankZombie extends Zombies{
     TankZombie(int row,int col){
-        super(row,col,200,10,20);
+        super(row,col,200,6,20);
         this.zombieImage=new ImageIcon(getClass().getResource("/resources/tankzombie1.png")).getImage();
         animation=new Image[8];
         animation[0]=new ImageIcon(getClass().getResource("/resources/tankzombie3.png")).getImage();

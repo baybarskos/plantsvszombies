@@ -51,6 +51,6 @@ public abstract class Zombies extends GameObject{
 
     }
     public void applySlowEffect(){
-        if(this.speed>0.5) this.speed/=3;
+        if(this.speed>1) this.speed-=1;
     }
 }
