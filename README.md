@@ -12,6 +12,10 @@ Features
 * Bonus features:
   * Shovel: Removes a plant from a tile.
   * Plant Food: Triggers temporary superpowers for used plants.
+ UI Notation:
+  * (number-PlantName): The number before the hyphen indicates the plant's cost
+    (e.g., "100-PeaShooter" means PeaShooter costs 100 sun)
+  * (number Plant Food): The specified number indicates how many Plant Foods are left to use.
 
 How to Run the Game
 You need to have JDK21 to successfully run the game
