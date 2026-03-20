@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements CellSize {
                 if (img != null) {
                     int yPixel = zombie.getRow() * CELLSIZE;
                     
-                    g.drawImage(img[zombie.currentFrame], (int)zombie.getXPosition(), yPixel, CELLSIZE*12/11, CELLSIZE*12/11, this);
+                    g.drawImage(img[zombie.currentFrame], (int)zombie.getXPosition(), yPixel, CELLSIZE, CELLSIZE, this);
                 }
             }
         }

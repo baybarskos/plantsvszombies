@@ -10,8 +10,8 @@ public class LoseScreen extends JPanel implements CellSize{
         setLayout(new BorderLayout());
         JButton restartButton=new JButton("MAIN MENU");
         restartButton.setForeground(Color.RED);
-        restartButton.setFont(new Font("Ariel",Font.BOLD,80));
-        restartButton.setPreferredSize(new Dimension(300,80));
+        restartButton.setFont(new Font("Arial",Font.BOLD,30));
+        restartButton.setBackground(new Color(199, 1, 1, 136));
         restartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -19,9 +19,10 @@ public class LoseScreen extends JPanel implements CellSize{
                 main.returnToMenu();
             }
         });
-        restartButton.setBackground(Color.RED);
-        restartButton.setOpaque(false);
-        add(restartButton,BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
+        buttonPanel.add(restartButton);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

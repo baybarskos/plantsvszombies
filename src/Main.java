@@ -18,7 +18,7 @@ public class Main extends JFrame {
         });
     }
     public Main(){
-        setIconImage(new ImageIcon(getClass().getResource("/resources/pvzlogo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/resources/wallnutS.png")).getImage());
         setTitle("Plants vs Zombies");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -54,25 +54,34 @@ public class Main extends JFrame {
         mainPanel.add(winScreen,"WIN");
         add(mainPanel);
 
-        InputMap inputMap=mainPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap actionMap=mainPanel.getActionMap();
-        String keyWord="ESC";
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0), keyWord);
-        actionMap.put("ESC", new AbstractAction() {
+        bindPlantKey(KeyEvent.VK_1, "selectPea",    0);
+        bindPlantKey(KeyEvent.VK_2, "selectSun",    1);
+        bindPlantKey(KeyEvent.VK_3, "selectWall",   2);
+        bindPlantKey(KeyEvent.VK_4, "selectSnow",   3);
+        bindPlantKey(KeyEvent.VK_5, "selectCherry", 4);
+        bindPlantKey(KeyEvent.VK_6, "selectShovel", 5);
+        InputMap escInputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap escActionMap = getRootPane().getActionMap();
+        escInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "escPause");
+        escActionMap.put("escPause", new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if(engine!=null){
-                    if(engine.isPaused){
-                        engine.resumeAndLoad();
-                        topPanel.pauseButton.setBackground(Color.RED);
-                    } else {
-                        engine.pauseAndSave();
-                        topPanel.pauseButton.setBackground(Color.GREEN);
-                    }
+            public void actionPerformed(ActionEvent e) {
+                if (engine != null && engine.getTopPanel() != null) {
+                    engine.getTopPanel().pauseButton.doClick();
                 }
             }
         });
-
+        InputMap plantFoodInputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap plantFoodActionMap = getRootPane().getActionMap();
+        plantFoodInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_7, 0), "PlantFood");
+        plantFoodActionMap.put("PlantFood", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (engine != null && engine.getTopPanel() != null&&!engine.isPaused) {
+                    engine.getTopPanel().plantFood.doClick();
+                }
+            }
+        });
         pack();
         setLocationRelativeTo(null);
 
@@ -95,5 +104,20 @@ public class Main extends JFrame {
     }
     public void winGame(){
         cardLayout.show(mainPanel,"WIN");
+    }
+    private void bindPlantKey(int keyCode, String actionName, int buttonIndex) {
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = getRootPane().getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke(keyCode, 0), actionName);
+
+        actionMap.put(actionName, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (engine != null && !engine.isPaused) {
+                    engine.getTopPanel().selectPlantByIndex(buttonIndex);
+                }
+            }
+        });
     }
 }

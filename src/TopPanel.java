@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TopPanel extends JPanel {
     int currentSun=150;
     JLabel sunLabel;
-    private String selectedPlant=null;
+    public String selectedPlant=null;
 
     public ArrayList<JButton> plantButtons=new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class TopPanel extends JPanel {
         sunLabel=new JLabel("Sun: "+currentSun);
         sunLabel.setFont(new Font("Arial",Font.BOLD,20));
         add(sunLabel);
-        String[] selectables={"100+PeaShooter"," 50+SunFlower"," 50+WallNut","150+SnowPea","150+CherryBomb","Shovel"};
+        String[] selectables={"100-PeaShooter"," 50-SunFlower"," 50-WallNut","150-SnowPea","125-CherryBomb","    Shovel"};
         for(String plantName:selectables){
             JButton plantButton=new JButton((plantName));
 
@@ -104,7 +104,7 @@ public class TopPanel extends JPanel {
         this.selectedPlant=null;
         highlightSelected(null);
     }
-    private void highlightSelected(JButton clicked){
+    public void highlightSelected(JButton clicked){
         for(JButton button: plantButtons){
             if(button==clicked) button.setBackground(SELECTED);
             else button.setBackground(DEFAULT);
@@ -120,5 +120,12 @@ public class TopPanel extends JPanel {
         plantFood.setEnabled(true);
         plantFood.setText(3+" PlantFood");
         selectedPlant="";
+    }
+    public void selectPlantByIndex(int index) {
+        if (index >= 0 && index < plantButtons.size()) {
+            JButton targetButton = plantButtons.get(index);
+            this.selectedPlant = targetButton.getText().substring(4);
+            highlightSelected(targetButton);
+        }
     }
 }

@@ -8,11 +8,15 @@ public class MainMenu extends JPanel implements CellSize{
     public MainMenu(Main main, GameEngine engine){
         setLayout(new BorderLayout());
         this.background=new ImageIcon(getClass().getResource("/resources/pvzbackground.png")).getImage();
+        Color semiOpaqueColor = new Color(146, 179, 106, 50);
         JButton startButton=new JButton("NEW GAME");
         startButton.setFont(new Font("Arial",Font.BOLD,30));
+        startButton.setForeground(Color.WHITE);
         startButton.setPreferredSize(new Dimension(300,80));
-        startButton.setBackground(Color.cyan);
-        startButton.setOpaque(false);
+        startButton.setBackground(semiOpaqueColor);
+        startButton.setBorderPainted(false);
+        startButton.setOpaque(true);
+        startButton.setFocusPainted(false);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -23,8 +27,11 @@ public class MainMenu extends JPanel implements CellSize{
         JButton loadButton=new JButton("LOAD GAME");
         loadButton.setFont(new Font("Dialog",Font.BOLD,30));
         loadButton.setPreferredSize(new Dimension(300,80));
-        loadButton.setBackground(Color.cyan);
-        loadButton.setOpaque(false);
+        loadButton.setBackground(semiOpaqueColor);
+        loadButton.setForeground(Color.WHITE);
+        loadButton.setBorderPainted(false);
+        loadButton.setOpaque(true);
+        loadButton.setFocusPainted(false);
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
