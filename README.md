@@ -10,7 +10,7 @@ Features
 * Dynamic Wave System: A multithreaded spawning system that scales in difficulty, increasing zombie health and spawn frequency as waves progress.
 * Save & Load System: The game can be paused at any time, which saves the current state to a file. Players can load this file from the main menu to resume their progress anytime.
 * Bonus features:
-* * Shovel: Removes a plant from a tile.
+  * Shovel: Removes a plant from a tile.
   * Plant Food: Triggers temporary superpowers for used plants.
 
 How to Run the Game
