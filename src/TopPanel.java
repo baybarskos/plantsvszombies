@@ -17,6 +17,7 @@ public class TopPanel extends JPanel {
 
     private GameEngine engine;
     public JButton pauseButton;
+    public JButton plantFood;
 
     int performedTotalTime=0;
 
@@ -30,22 +31,35 @@ public class TopPanel extends JPanel {
         sunLabel=new JLabel("Sun: "+currentSun);
         sunLabel.setFont(new Font("Arial",Font.BOLD,20));
         add(sunLabel);
-        String[] selectables={"PeaShooter","SunFlower","WallNut","SnowPea","CherryBomb","Shovel","PlantFood"};
+        String[] selectables={"100+PeaShooter"," 50+SunFlower"," 50+WallNut","150+SnowPea","150+CherryBomb","Shovel"};
         for(String plantName:selectables){
             JButton plantButton=new JButton((plantName));
 
             plantButton.setOpaque(true);
             plantButtons.add(plantButton);
+            plantButton.setBackground(DEFAULT);
 
             plantButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    selectedPlant=plantName;
+                    selectedPlant=plantName.substring(4);
                     highlightSelected(plantButton);
                 }
             });
             add(plantButton);
         }
+        plantFood=new JButton("PlantFood");
+        plantFood.setOpaque(true);
+        plantFood.setBackground(DEFAULT);
+        plantFood.setText(3+" PlantFood");
+        plantFood.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedPlant="PlantFood";
+                highlightSelected(plantFood);
+            }
+        });
+        add(plantFood);
 
         pauseButton=new JButton("Pause & Save");
         pauseButton.setBackground(Color.RED);
@@ -95,11 +109,14 @@ public class TopPanel extends JPanel {
             if(button==clicked) button.setBackground(SELECTED);
             else button.setBackground(DEFAULT);
         }
+        if(plantFood==clicked) plantFood.setBackground(SELECTED);
+        else plantFood.setBackground(DEFAULT);
     }
     public void resetButtons(){
         for(int i=0;i<plantButtons.size();i++){
             plantButtons.get(i).setEnabled(true);
             performedTotalTime=0;
         }
+        plantFood.setEnabled(true);
     }
 }

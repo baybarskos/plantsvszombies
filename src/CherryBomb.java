@@ -27,11 +27,7 @@ public class CherryBomb extends Plants{
     public void performSpecial(GameEngine engine){
         int cellLeft=this.col*CELLSIZE;
         for(Zombies zombie: engine.getActiveZombies()){
-            if(Math.abs(zombie.getRow()-this.row)<2){
-                if(zombie.getXPosition()>=cellLeft-(CELLSIZE*3/2)&&zombie.getXPosition()<=cellLeft+(CELLSIZE*3/2)){
-                    zombie.health=0;
-                }
-            }
+                zombie.health=0;
         }
         this.health=0;
         performedSpecial=true;

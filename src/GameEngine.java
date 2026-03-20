@@ -62,10 +62,10 @@ public class GameEngine implements ActionListener,CellSize {
         for (Projectiles proj : activeProjectiles) {
             if (proj instanceof Sun) {
                 
-                boolean rowIsClose = Math.abs(proj.getRow() - r) <= 0.3;
+                boolean rowIsClose = Math.abs(proj.getRow() - r) <= 0.5;
 
                 
-                boolean colIsClose = Math.abs(proj.getXPosition() - clickX) <= CELLSIZE/4;
+                boolean colIsClose = Math.abs(proj.getXPosition() - clickX) <= CELLSIZE/2;
                 if (rowIsClose&&colIsClose) {
                     activeProjectiles.remove(proj);
                     return true;

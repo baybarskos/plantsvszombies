@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel implements CellSize {
     private GameEngine engine;
@@ -47,10 +45,9 @@ public class GamePanel extends JPanel implements CellSize {
                 if (img != null) {
                     int yPixel = zombie.getRow() * CELLSIZE;
                     
-                    g.drawImage(img[zombie.currentFrame], (int)zombie.getXPosition(), yPixel, CELLSIZE, CELLSIZE, this);
+                    g.drawImage(img[zombie.currentFrame], (int)zombie.getXPosition(), yPixel, CELLSIZE*12/11, CELLSIZE*12/11, this);
                 }
             }
-
         }
     }
 }
