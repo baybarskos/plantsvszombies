@@ -24,12 +24,15 @@ public class SnowPea extends Plants{
         engine.addProjectile(newPea);
     }
     public void performSpecial(GameEngine engine){
-        int startX=this.col*CELLSIZE+32;
+        int startX=this.col*CELLSIZE;
         int[] rows={0,1,2,3,4};
         for(int i: rows){
             Pea newPea=new Pea(i,startX,20);
+            Pea newPea1=new Pea(i,startX+40,20);
             newPea.makeSnow();
+            newPea1.makeSnow();
             engine.addProjectile(newPea);
+            engine.addProjectile(newPea1);
         }
         performedSpecial=true;
         this.plantImage=new ImageIcon(getClass().getResource("/resources/snowpeaS.png")).getImage();

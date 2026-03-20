@@ -118,5 +118,7 @@ public class TopPanel extends JPanel {
             performedTotalTime=0;
         }
         plantFood.setEnabled(true);
+        plantFood.setText(3+" PlantFood");
+        selectedPlant="";
     }
 }
