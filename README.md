@@ -1,8 +1,11 @@
 Plants vs Zombies clone made in Java with Javax Swing and Java AWT
+
 Youtube Link
+
 This project is a simplified version of Plants vs Zombies with 4 zombie type and 5 plant type.
+
 The objective is to plant plants on a 5x9 grid to defend against the zombies.
-If any zombie touch the leftmost edge, you lose. If you successfully survive all the waves, you win.
+If any zombie touches the leftmost edge, you lose. If you successfully survive all the waves, you win.
 
 Features
 * 5 Plant Types: PeaShooter, SunFlower, WallNut, SnowPea, CherryBomb.
@@ -39,3 +42,4 @@ Controls
   - 6: Select the Shovel.
   - 7: Activate PlantFood.
   - ESC: Pause & Save or Resume & Load the game.
+

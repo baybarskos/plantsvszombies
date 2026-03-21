@@ -51,7 +51,7 @@ public class TopPanel extends JPanel {
         plantFood=new JButton("PlantFood");
         plantFood.setOpaque(true);
         plantFood.setBackground(DEFAULT);
-        plantFood.setText(3+" PlantFood");
+        plantFood.setText(3-performedTotalTime+" PlantFood");
         plantFood.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -115,10 +115,10 @@ public class TopPanel extends JPanel {
     public void resetButtons(){
         for(int i=0;i<plantButtons.size();i++){
             plantButtons.get(i).setEnabled(true);
-            performedTotalTime=0;
         }
-        plantFood.setEnabled(true);
-        plantFood.setText(3+" PlantFood");
+        plantFood.setText(3-performedTotalTime+" PlantFood");
+        if(performedTotalTime!=3) plantFood.setEnabled(true);
+        else plantFood.setEnabled(false);
         selectedPlant="";
     }
     public void selectPlantByIndex(int index) {
