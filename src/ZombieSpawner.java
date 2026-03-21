@@ -6,6 +6,8 @@ public class ZombieSpawner implements Runnable{
     private int CurrentWave=1;
     private final int TOTAL_WAVES=2;
     private Random random=new Random();
+    public boolean isWavePhase = false;
+    public int currentPhaseZombiesSpawned = 0;
     public ZombieSpawner(GameEngine engine){
         this.engine=engine;
     }
@@ -18,21 +20,32 @@ public class ZombieSpawner implements Runnable{
     public void run(){
         try{
             while(running&&CurrentWave<=TOTAL_WAVES){
-                for(int i=0;i<8;i++){
-                    if(!running) return;
-                    spawnNormalZombie();
-                    Thread.sleep(random.nextInt(3000,5000));
+                if (!isWavePhase) {
+                    for (int i = currentPhaseZombiesSpawned; i < 8; i++) {
+                        if (!running) return;
+                        currentPhaseZombiesSpawned = i;
+                        spawnNormalZombie();
+                        Thread.sleep(random.nextInt(3000, 5000));
+                    }
+                    isWavePhase = true;
+                    currentPhaseZombiesSpawned = 0;
+                    Thread.sleep(2000);
                 }
-                Thread.sleep(2000);
-                int zombiesInWave=10+(CurrentWave*10);
-                int spawnDelay=3000-(CurrentWave*500);
-                for (int i = 0; i < zombiesInWave; i++) {
-                    if(!running) return;
-                    spawnWaveZombie();
-                    Thread.sleep(spawnDelay);
+                if (isWavePhase) {
+                    int zombiesInWave = 10 + (CurrentWave * 10);
+                    int spawnDelay = 3000 - (CurrentWave * 500);
+
+                    for (int i = currentPhaseZombiesSpawned; i < zombiesInWave; i++) {
+                        if (!running) return;
+                        currentPhaseZombiesSpawned = i;
+                        spawnWaveZombie();
+                        Thread.sleep(spawnDelay);
+                    }
+                    CurrentWave++;
+                    isWavePhase = false;
+                    currentPhaseZombiesSpawned = 0;
+                    Thread.sleep(2000);
                 }
-                CurrentWave++;
-                Thread.sleep(2000 );
             }
 
             
