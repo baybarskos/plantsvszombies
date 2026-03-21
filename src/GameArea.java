@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -10,7 +8,6 @@ public class GameArea extends JPanel implements CellSize {
     private int row;
     private int col;
     private Plants currentPlant=null;
-    private ArrayList<Zombies> zombiesInCell=new ArrayList<>();
     private TopPanel topPanel;
 
     private GameEngine engine;
