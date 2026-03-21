@@ -213,6 +213,7 @@ public class GameEngine implements ActionListener,CellSize {
             }
         } catch (IOException e){
             System.err.println("Error loading the game"+e.getMessage());
+            main.startGame();
         } catch(ClassNotFoundException e){
             System.err.println("Class do not found."+e.getMessage());
         }
