@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class CherryBomb extends Plants{
     public CherryBomb(int row,int col){
-        super(row,col,1,125,20);
+        super(row,col,1000,125,20);
         animationSpeed=7;
         this.plantImage=new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
         animation=new Image[3];

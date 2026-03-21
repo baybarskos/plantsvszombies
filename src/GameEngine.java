@@ -176,7 +176,7 @@ public class GameEngine implements ActionListener,CellSize {
         int WaveCount=1;
         if(spawner!=null) WaveCount=spawner.getWaveCount();
         try(ObjectOutputStream out=new ObjectOutputStream(new FileOutputStream("pvzsave.dat"))){
-            GameState state=new GameState(activeZombies,activePlants,activeProjectiles, topPanel.currentSun,WaveCount,topPanel.performedTotalTime);
+            GameState state = new GameState(activeZombies, activePlants, activeProjectiles, topPanel.currentSun, spawner.getWaveCount(), topPanel.performedTotalTime, spawner.isWavePhase, spawner.currentPhaseZombiesSpawned);
             out.writeObject(state);
         } catch (IOException e){
             System.err.println("Error saving the game"+e.getMessage());
@@ -219,12 +219,17 @@ public class GameEngine implements ActionListener,CellSize {
         }
         isPaused=false;
         gameLoop.start();
-        if(spawnerThread==null||!spawnerThread.isAlive()){
+        if (this.spawner != null) {
+            this.spawner.stop();
+        }
             this.spawner=new ZombieSpawner(this);
             spawner.setWaveCount(state.WaveCount);
+
+            spawner.isWavePhase=state.isWavePhase;
+            spawner.currentPhaseZombiesSpawned=state.currentPhaseZombiesSpawned;
+
             this.spawnerThread=new Thread(this.spawner);
             this.spawnerThread.start();
-        }
     }
 
     public void resetBoard(){

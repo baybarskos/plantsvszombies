@@ -11,13 +11,17 @@ public class GameState implements Serializable {
     public int WaveCount;
 
     public int performedTotalTime;
+    public boolean isWavePhase;
+    public int currentPhaseZombiesSpawned;
 
-    public GameState(List<Zombies> z, List<Plants> p, List<Projectiles> proj, int sun, int WaveCount, int performedTotalTime) {
+    public GameState(List<Zombies> z, List<Plants> p, List<Projectiles> proj, int sun, int WaveCount, int performedTotalTime, boolean isWavePhase, int currentPhaseZombiesSpawned) {
         this.zombies = z;
         this.plants = p;
         this.projectiles = proj;
         this.currentSun = sun;
-        this.WaveCount=WaveCount;
-        this.performedTotalTime=performedTotalTime;
+        this.WaveCount = WaveCount;
+        this.performedTotalTime = performedTotalTime;
+        this.isWavePhase = isWavePhase;
+        this.currentPhaseZombiesSpawned = currentPhaseZombiesSpawned;
     }
 }
