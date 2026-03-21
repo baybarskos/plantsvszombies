@@ -14,10 +14,10 @@ public class CherryBomb extends Plants{
 
     @Override
     public void performAction(GameEngine engine) {
-        int cellLeft=this.col*CELLSIZE;
+        int cellLeft=(this.col)*CELLSIZE;
         for(Zombies zombie: engine.getActiveZombies()){
             if(zombie.getRow()==this.row){
-                if(zombie.getXPosition()>=cellLeft-CELLSIZE/8&&zombie.getXPosition()<=cellLeft+CELLSIZE+CELLSIZE/8){
+                if(zombie.getXPosition()>=cellLeft-CELLSIZE&&zombie.getXPosition()<=cellLeft+CELLSIZE+CELLSIZE/8){
                     zombie.health=0;
                 }
             }

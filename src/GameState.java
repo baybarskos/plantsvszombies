@@ -10,11 +10,14 @@ public class GameState implements Serializable {
     public int currentSun;
     public int WaveCount;
 
-    public GameState(List<Zombies> z, List<Plants> p, List<Projectiles> proj, int sun, int WaveCount) {
+    public int performedTotalTime;
+
+    public GameState(List<Zombies> z, List<Plants> p, List<Projectiles> proj, int sun, int WaveCount, int performedTotalTime) {
         this.zombies = z;
         this.plants = p;
         this.projectiles = proj;
         this.currentSun = sun;
         this.WaveCount=WaveCount;
+        this.performedTotalTime=performedTotalTime;
     }
 }

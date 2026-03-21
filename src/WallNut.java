@@ -4,7 +4,7 @@ import java.awt.*;
 public class WallNut extends Plants{
     public WallNut(int row, int col){
         super(row,col,500,50,0,999999);
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/wallnut.png")).getImage();
+        this.plantImage=new ImageIcon(getClass().getResource("/resources/wallnut1.png")).getImage();
         animation=new Image[8];
         animation[0]=new ImageIcon(getClass().getResource("/resources/wallnut3.png")).getImage();
         animation[1]=new ImageIcon(getClass().getResource("/resources/wallnut2.png")).getImage();

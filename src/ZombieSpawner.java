@@ -23,16 +23,16 @@ public class ZombieSpawner implements Runnable{
                     spawnNormalZombie();
                     Thread.sleep(random.nextInt(3000,5000));
                 }
-                Thread.sleep(400);
-                int zombiesInWave=10+(CurrentWave*5);
-                int spawnDelay=3000-(CurrentWave*400);
+                Thread.sleep(2000);
+                int zombiesInWave=10+(CurrentWave*10);
+                int spawnDelay=3000-(CurrentWave*500);
                 for (int i = 0; i < zombiesInWave; i++) {
                     if(!running) return;
                     spawnWaveZombie();
                     Thread.sleep(spawnDelay);
                 }
                 CurrentWave++;
-                Thread.sleep(500 ); 
+                Thread.sleep(2000 );
             }
 
             

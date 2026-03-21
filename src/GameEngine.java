@@ -91,7 +91,7 @@ public class GameEngine implements ActionListener,CellSize {
             if (zombie != null) {
                 zombie.move();
 
-                if (zombie.getXPosition() < 0) {
+                if (zombie.getXPosition() < -CELLSIZE*3/4) {
                     resetBoard();
                     gameLoop.stop();
                     if (spawner != null) spawner.stop();
@@ -176,7 +176,7 @@ public class GameEngine implements ActionListener,CellSize {
         int WaveCount=1;
         if(spawner!=null) WaveCount=spawner.getWaveCount();
         try(ObjectOutputStream out=new ObjectOutputStream(new FileOutputStream("pvzsave.dat"))){
-            GameState state=new GameState(activeZombies,activePlants,activeProjectiles, topPanel.currentSun,WaveCount);
+            GameState state=new GameState(activeZombies,activePlants,activeProjectiles, topPanel.currentSun,WaveCount,topPanel.performedTotalTime);
             out.writeObject(state);
         } catch (IOException e){
             System.err.println("Error saving the game"+e.getMessage());
@@ -198,7 +198,9 @@ public class GameEngine implements ActionListener,CellSize {
             for (Projectiles proj : activeProjectiles) proj.reloadImage();
 
             this.topPanel.currentSun= state.currentSun;
+            this.topPanel.performedTotalTime=state.performedTotalTime;
             this.topPanel.updateSunDisplay();
+            this.topPanel.resetButtons();
 
             for (int i = 0; i < 45; i++) {
                 GameArea area = (GameArea) gameBoard.getComponent(i);
@@ -228,6 +230,7 @@ public class GameEngine implements ActionListener,CellSize {
         activeZombies.clear();
         activeProjectiles.clear();
         activePlants.clear();
+        this.topPanel.performedTotalTime=0;
         topPanel.currentSun=150;
         topPanel.resetButtons();
 
