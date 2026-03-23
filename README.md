@@ -22,6 +22,7 @@ Features
 
 How to Run the Game
 You need to have JDK21 to successfully run the game
+It is suggested to run this game on Linux
   Terminal
 * 1. Open your terminal and navigate to the project directory: 'cd path/to/directory'
 * 2. Compile all .java files: 'javac *.java'
