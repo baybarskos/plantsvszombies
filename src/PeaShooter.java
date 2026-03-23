@@ -2,19 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PeaShooter extends Plants{
+    private static final Image MAIN_IMG = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter1.png")).getImage();
+    private static final Image[] ANIM_FRAMES = new Image[8];
+    static {
+        ANIM_FRAMES[0] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter3.png")).getImage();
+        ANIM_FRAMES[1] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter2.png")).getImage();
+        ANIM_FRAMES[2] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter1.png")).getImage();
+        ANIM_FRAMES[3] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter4.png")).getImage();
+        ANIM_FRAMES[4] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter5.png")).getImage();
+        ANIM_FRAMES[7] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter2.png")).getImage();
+        ANIM_FRAMES[6] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter1.png")).getImage();
+        ANIM_FRAMES[5] = new ImageIcon(PeaShooter.class.getResource("/resources/peashooter4.png")).getImage();
+    }
+    private static final Image SPECIAL_IMG=new ImageIcon(PeaShooter.class.getResource("/resources/peashooterS.png")).getImage();
     public PeaShooter(int row,int col){
         super(row,col,100,100,90);
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/peashooter3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/peashooter2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/peashooter4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/peashooter5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/peashooter2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/peashooter4.png")).getImage();
-
+        this.plantImage=MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
     public void performAction(GameEngine engine) {
         int startX=this.col*CELLSIZE+32;
@@ -27,7 +31,7 @@ public class PeaShooter extends Plants{
             Pea newPea=new Pea(this.row,startX+i*30,20);
             engine.addProjectile(newPea);
         }
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/peashooterS.png")).getImage();
+        this.plantImage=SPECIAL_IMG;
         performedSpecial=true;
     }
     void draw(Graphics g){
@@ -35,15 +39,7 @@ public class PeaShooter extends Plants{
     }
     @Override
     public void reloadImage() {
-        this.plantImage = new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/peashooter3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/peashooter2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/peashooter4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/peashooter5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/peashooter2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/peashooter1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/peashooter4.png")).getImage();
+        this.plantImage = MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
 }

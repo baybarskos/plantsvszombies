@@ -1,47 +1,48 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class SunFlower extends Plants{
+public class SunFlower extends Plants {
+    private static final Image MAIN_IMG = new ImageIcon(SunFlower.class.getResource("/resources/sunflower1.png")).getImage();
+    private static final Image[] ANIM_FRAMES = new Image[8];
 
-    SunFlower(int row,int col){
-        super(row,col,100,50,300);
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/sunflower3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/sunflower2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/sunflower4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/sunflower5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/sunflower2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/sunflower4.png")).getImage();
+    static {
+        ANIM_FRAMES[0] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower3.png")).getImage();
+        ANIM_FRAMES[1] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower2.png")).getImage();
+        ANIM_FRAMES[2] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower1.png")).getImage();
+        ANIM_FRAMES[3] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower4.png")).getImage();
+        ANIM_FRAMES[4] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower5.png")).getImage();
+        ANIM_FRAMES[7] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower2.png")).getImage();
+        ANIM_FRAMES[6] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower1.png")).getImage();
+        ANIM_FRAMES[5] = new ImageIcon(SunFlower.class.getResource("/resources/sunflower4.png")).getImage();
+    }
+
+    private static final Image SPECIAL_IMG = new ImageIcon(SunFlower.class.getResource("/resources/sunflowerS.png")).getImage();
+
+    public SunFlower(int row, int col) {
+        super(row, col, 100, 50, 300);
+        this.plantImage = MAIN_IMG;
+        this.animation = ANIM_FRAMES;
     }
 
     @Override
     public void performAction(GameEngine engine) {
-        Sun newSun=new Sun(row,col*CELLSIZE);
+        Sun newSun = new Sun(row, col * CELLSIZE);
         engine.addProjectile(newSun);
     }
+
     public void performSpecial(GameEngine engine) {
-        for(int i=0;i<5;i++) {
-            Sun newSun=new Sun(row,col*CELLSIZE);
+        for (int i = 0; i < 5; i++) {
+            Sun newSun = new Sun(row, col * CELLSIZE);
             engine.addProjectile(newSun);
-            plantImage=new ImageIcon(getClass().getResource("/resources/sunflowerS.png")).getImage();
-            performedSpecial=true;
+            this.plantImage = SPECIAL_IMG;
+            performedSpecial = true;
         }
     }
+
     @Override
     public void reloadImage() {
-        this.plantImage = new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        performedSpecial=false;
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/sunflower3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/sunflower2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/sunflower4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/sunflower5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/sunflower2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/sunflower1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/sunflower4.png")).getImage();
+        this.plantImage = MAIN_IMG;
+        performedSpecial = false;
+        this.animation = ANIM_FRAMES;
     }
 }

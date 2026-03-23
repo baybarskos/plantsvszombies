@@ -3,15 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.io.*;
 
 public class GameEngine implements ActionListener,CellSize {
-    private Timer gameLoop;
+    public Timer gameLoop;
 
-    private List<Zombies> activeZombies = new CopyOnWriteArrayList<>();
-    private List<Projectiles> activeProjectiles = new CopyOnWriteArrayList<>();
-    private List<Plants> activePlants = new CopyOnWriteArrayList<>();
+    private List<Zombies> activeZombies = new ArrayList<>();
+    private List<Projectiles> activeProjectiles = new ArrayList<>();
+    private List<Plants> activePlants = new ArrayList<>();
 
     private TopPanel topPanel;
     private JPanel gameBoard;
@@ -67,7 +66,7 @@ public class GameEngine implements ActionListener,CellSize {
                 
                 boolean colIsClose = Math.abs(proj.getXPosition() - clickX) <= CELLSIZE/2;
                 if (rowIsClose&&colIsClose) {
-                    activeProjectiles.remove(proj);
+                    proj.health=0;
                     return true;
                 }
             }
@@ -81,7 +80,7 @@ public class GameEngine implements ActionListener,CellSize {
 
             
             if (proj.xPosition > CELLSIZE*10) {
-                activeProjectiles.remove(proj);
+                proj.health=0;
             }
         }
     }
@@ -116,7 +115,6 @@ public class GameEngine implements ActionListener,CellSize {
                 
                 if (proj.row == zombie.row && proj.getXPosition()>=zombie.getXPosition()&&proj.getXPosition()<=zombie.getXPosition()+CELLSIZE/2) {
                     proj.hitZombie(zombie);
-                    activeProjectiles.remove(proj);
                     break;
                 }
             }
@@ -144,7 +142,9 @@ public class GameEngine implements ActionListener,CellSize {
 
     
     public void addProjectile(Projectiles p) { activeProjectiles.add(p); }
-    public void addZombie(Zombies z) { activeZombies.add(z); }
+    public void addZombie(Zombies z) {
+        SwingUtilities.invokeLater(() -> activeZombies.add(z));
+    }
     public void addPlant(Plants p) { activePlants.add(p); }
     public void removePlant(Plants p){ activePlants.remove(p);}
     public TopPanel getTopPanel() { return topPanel; }
@@ -156,9 +156,6 @@ public class GameEngine implements ActionListener,CellSize {
     }
     public List<Zombies> getActiveZombies() {
         return activeZombies;
-    }
-    public JPanel getGameBoard(){
-        return gameBoard;
     }
     public void setGameBoard(JPanel board) {
         this.gameBoard = board;
@@ -189,9 +186,9 @@ public class GameEngine implements ActionListener,CellSize {
         try(ObjectInputStream in=new ObjectInputStream(new FileInputStream("pvzsave.dat"))){
             state=(GameState) in.readObject();
 
-            this.activeZombies=new CopyOnWriteArrayList<>(state.zombies);
-            this.activePlants=new CopyOnWriteArrayList<>(state.plants);
-            this.activeProjectiles=new CopyOnWriteArrayList<>(state.projectiles);
+            this.activeZombies=new ArrayList<>(state.zombies);
+            this.activePlants=new ArrayList<>(state.plants);
+            this.activeProjectiles=new ArrayList<>(state.projectiles);
 
             for (Plants p : activePlants) p.reloadImage();
             for (Zombies z : activeZombies) z.reloadImage();

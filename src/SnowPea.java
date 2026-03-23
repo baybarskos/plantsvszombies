@@ -2,18 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SnowPea extends Plants{
-    public SnowPea(int row, int col){
+    private static final Image MAIN_IMG = new ImageIcon(SnowPea.class.getResource("/resources/snowpea1.png")).getImage();
+    private static final Image[] ANIM_FRAMES = new Image[8];
+    static {
+        ANIM_FRAMES[0] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea3.png")).getImage();
+        ANIM_FRAMES[1] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea2.png")).getImage();
+        ANIM_FRAMES[2] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea1.png")).getImage();
+        ANIM_FRAMES[3] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea4.png")).getImage();
+        ANIM_FRAMES[4] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea5.png")).getImage();
+        ANIM_FRAMES[7] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea2.png")).getImage();
+        ANIM_FRAMES[6] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea1.png")).getImage();
+        ANIM_FRAMES[5] = new ImageIcon(SnowPea.class.getResource("/resources/snowpea4.png")).getImage();
+    }
+    private static final Image SPECIAL_IMG=new ImageIcon(SnowPea.class.getResource("/resources/snowpeaS.png")).getImage();
+    public SnowPea(int row,int col){
         super(row,col,100,150,90);
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/snowpea3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/snowpea2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/snowpea4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/snowpea5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/snowpea2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/snowpea4.png")).getImage();
+        this.plantImage=MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
 
     @Override
@@ -35,22 +40,14 @@ public class SnowPea extends Plants{
             engine.addProjectile(newPea1);
         }
         performedSpecial=true;
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/snowpeaS.png")).getImage();
+        this.plantImage=SPECIAL_IMG;
     }
     void draw(Graphics g){
         g.drawImage(this.plantImage,row*CELLSIZE,col*CELLSIZE,null);
     }
     @Override
     public void reloadImage() {
-        this.plantImage = new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation=new Image[8];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/snowpea3.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/snowpea2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation[3]=new ImageIcon(getClass().getResource("/resources/snowpea4.png")).getImage();
-        animation[4]=new ImageIcon(getClass().getResource("/resources/snowpea5.png")).getImage();
-        animation[7]=new ImageIcon(getClass().getResource("/resources/snowpea2.png")).getImage();
-        animation[6]=new ImageIcon(getClass().getResource("/resources/snowpea1.png")).getImage();
-        animation[5]=new ImageIcon(getClass().getResource("/resources/snowpea4.png")).getImage();
+        this.plantImage = MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
 }
