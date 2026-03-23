@@ -2,14 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CherryBomb extends Plants{
+    private static final Image MAIN_IMG = new ImageIcon(CherryBomb.class.getResource("/resources/cherrybomb1.png")).getImage();
+    private static final Image[] ANIM_FRAMES = new Image[3];
+    static {
+        ANIM_FRAMES[0] = new ImageIcon(CherryBomb.class.getResource("/resources/cherrybomb3.png")).getImage();
+        ANIM_FRAMES[1] = new ImageIcon(CherryBomb.class.getResource("/resources/cherrybomb2.png")).getImage();
+        ANIM_FRAMES[2] = new ImageIcon(CherryBomb.class.getResource("/resources/cherrybomb1.png")).getImage();
+    }
     public CherryBomb(int row,int col){
         super(row,col,1000,125,20);
         animationSpeed=7;
-        this.plantImage=new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
-        animation=new Image[3];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/cherrybomb2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/cherrybomb3.png")).getImage();
+        this.plantImage=MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
 
     @Override
@@ -31,15 +35,12 @@ public class CherryBomb extends Plants{
         }
         this.health=0;
         performedSpecial=true;
-        this.plantImage = new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
+        this.plantImage = MAIN_IMG;
 
     }
     @Override
     public void reloadImage() {
-        this.plantImage = new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
-        animation=new Image[3];
-        animation[0]=new ImageIcon(getClass().getResource("/resources/cherrybomb1.png")).getImage();
-        animation[1]=new ImageIcon(getClass().getResource("/resources/cherrybomb2.png")).getImage();
-        animation[2]=new ImageIcon(getClass().getResource("/resources/cherrybomb3.png")).getImage();
+        this.plantImage = MAIN_IMG;
+        this.animation=ANIM_FRAMES;
     }
 }

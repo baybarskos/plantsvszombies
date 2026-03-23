@@ -1,6 +1,6 @@
 Plants vs Zombies clone made in Java with Javax Swing and Java AWT
 
-Youtube Link
+[Youtube Link](https://youtu.be/NV8BD3rJP-w)
 
 This project is a simplified version of Plants vs Zombies with 4 zombie type and 5 plant type.
 
