@@ -15,6 +15,7 @@ Features
 * Bonus features:
   * Shovel: Removes a plant from a tile.
   * Plant Food: Triggers temporary superpowers for used plants.
+  * You can plan your plants while game is paused.
  UI Notation:
   * (number-PlantName): The number before the hyphen indicates the plant's cost
     (e.g., "100-PeaShooter" means PeaShooter costs 100 sun)
